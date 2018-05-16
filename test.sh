@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 set -o pipefail
 
 # this is kind of an expensive check, so let's not do this twice if we
