@@ -1,7 +1,7 @@
-FROM alpine:3.7
+FROM ubuntu:16.04
 
-RUN apk update \
- && apk add curl gnupg g++ m4 make pkgconfig p11-kit libtasn1 libffi-dev gmp-dev unbound-dev
+RUN apt-get update \
+ && apt-get install -y curl gnupg g++ m4 make pkg-config p11-kit libffi-dev libgmp-dev wget
 
 COPY nettle.gpg .
 COPY gnutls.gpg .
@@ -68,6 +68,23 @@ RUN tar -xvf curl-7.60.0.tar.gz \
     && cd curl-7.60.0 \
     && ./configure --with-gnutls --without-ssl \
     && make install
+
+#FROM alpine:3.7
+
+#RUN addgroup -S app \
+#    && adduser -S -g app app \
+#    && apk --no-cache add \
+#    ca-certificates
+#
+#WORKDIR /usr/local/bin/
+#
+#COPY --from=0 /usr/lib/libcurl* /usr/lib/
+#COPY --from=0 /usr/lib/libgnutls* /usr/lib/
+#COPY --from=0 /usr/lib/libssh2* /usr/lib/
+#COPY --from=0 /usr/local/bin/curl    .
+#RUN chown -R app:app ./
+#
+#USER app
 
 ENTRYPOINT ["curl"]
 CMD ["--help"]
