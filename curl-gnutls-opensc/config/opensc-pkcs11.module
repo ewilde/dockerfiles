@@ -1,0 +1,14 @@
+# This is a module config for the 'included' p12-kit trust module
+module: /usr/local/lib/opensc-pkcs11.so
+
+# This controls whether the module is required to successfully initialize. If 'yes', then
+# a failure to load or initialize this module will result in a p11-kit system failure.
+critical: no
+
+# This setting affects the order that trust policy and other information
+# is looked up when going across various modules. Other trust policy modules
+# need to specify the priority where they slot into things.
+#priority: 1
+
+# Mark this module as a viable source of trust policy information
+trust-policy: yes

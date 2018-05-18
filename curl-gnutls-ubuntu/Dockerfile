@@ -69,6 +69,7 @@ RUN tar -xvf curl-7.60.0.tar.gz \
     && ./configure --with-gnutls --without-ssl \
     && make install
 
+RUN ldconfig
 #FROM alpine:3.7
 
 #RUN addgroup -S app \
